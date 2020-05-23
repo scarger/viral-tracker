@@ -1,25 +1,35 @@
 <template>
-  <div class="about">
-    <h1>You just searched up {{ searchKey }}</h1>
-    <v-simple-table v-if="siteList">
-      <template v-slot:default>
-        <thead>
-        <tr>
-          <th class="text-left">Site</th>
-          <th class="text-right">Count</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="result in siteList" :key="result.name">
-          <td>
-            <a :href="result.url">{{ result.name }}</a>
-          </td>
-          <td>{{ result.count }}</td>
-        </tr>
-        </tbody>
-      </template>
-    </v-simple-table>
-    <v-progress-circular indeterminate v-else></v-progress-circular>
+  <div style="height: 100%" class="about">
+    <v-container fluid v-if="siteList">
+      <h1 class="py-10 mx-auto">You just searched up {{ searchKey }}</h1>
+      <v-row>
+        <v-col class="mx-auto" md="4">
+          <v-simple-table>
+            <thead>
+            <tr>
+              <th class="text-center">Brand</th>
+              <th class="text-center">Site</th>
+              <th class="text-center">Count</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="result in siteList" :key="result.name">
+              <td>
+                <v-icon color="blue">mdi-{{ result.name }}</v-icon>
+              </td>
+              <td>
+                <a :href="result.url">{{ result.name }}</a>
+              </td>
+              <td>{{ result.count }}</td>
+            </tr>
+            </tbody>
+          </v-simple-table>
+        </v-col>
+      </v-row>
+    </v-container>
+    <v-container v-else fill-height fluid>
+      <v-progress-circular indeterminate class="ma-auto" size=64 width=7></v-progress-circular>
+    </v-container>
   </div>
 </template>
 

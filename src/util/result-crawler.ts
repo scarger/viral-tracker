@@ -19,6 +19,6 @@ export class SiteResult {
 
 export class ResultCrawler {
   async count (site: string): Promise<SiteResult> {
-    return new SiteResult(site, 0)
+    return new Promise<SiteResult>(resolve => setTimeout(() => resolve(new SiteResult(site, 0)), 2000))
   }
 }
