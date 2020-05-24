@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import { defineComponent } from '@vue/composition-api'
 import Searcher from '@/components/Searcher.vue'
 
