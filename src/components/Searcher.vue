@@ -1,6 +1,5 @@
 <template>
   <div class="search">
-    <h1>{{ msg }}</h1>
     <v-container fluid>
       <v-row>
         <v-spacer></v-spacer>
@@ -8,7 +7,7 @@
           <v-card class="pa-6">
             <v-card-title class="mx-0">Find what's trending!</v-card-title>
             <v-form ref="form" class="mx-2">
-              <v-text-field append-icon="mdi-magnify" label="search" v-model="search.query" :rules="[v => !!v || 'Required']"></v-text-field>
+              <v-text-field append-icon="mdi-magnify" label="search" @keyup.enter="doSearch" v-model="search.query" :rules="[v => !!v || 'Required']"></v-text-field>
               <v-btn color="primary" @click="doSearch">Search</v-btn>
             </v-form>
           </v-card>

@@ -9,7 +9,7 @@
       <v-toolbar-title>Viral Meter</v-toolbar-title>
       <v-icon style="padding-left: 10px" color="yellow" size="30px">mdi-trending-up</v-icon>
       <v-spacer></v-spacer>
-      <v-btn icon>
+      <v-btn icon @click="openSource">
         <v-icon size="30px">mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
@@ -20,20 +20,21 @@
 
     <v-footer class="align-content-center" dark padless>
       <v-card class="text-center" width="100%">
-        <v-card-text>Developed by Omar Elnagmi</v-card-text>
+        <v-card-text>Developed by Scarger</v-card-text>
       </v-card>
     </v-footer>
   </v-app>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
-
-export default Vue.extend({
+import { defineComponent } from '@vue/composition-api'
+export default defineComponent({
   name: 'App',
-
-  data: () => ({
-    //
-  })
+  setup () {
+    function openSource () {
+      window.open('https://github.com/scarger/viral-tracker', '_blank')
+    }
+    return { openSource }
+  }
 })
 </script>

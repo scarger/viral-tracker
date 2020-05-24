@@ -1,5 +1,4 @@
-
-// const axios = require('axios').default
+import * as htmlParser from 'node-html-parser'
 
 export class SiteResult {
   url: string
@@ -18,7 +17,26 @@ export class SiteResult {
 }
 
 export class ResultCrawler {
+  searchKey: string
+  constructor (searchKey: any) {
+    this.searchKey = searchKey
+  }
+
+  //  todo CORS problem -> Google blocking? - research
   async count (site: string): Promise<SiteResult> {
-    return new Promise<SiteResult>(resolve => setTimeout(() => resolve(new SiteResult(site, 0)), 2000))
+    const res: Response =
+      await fetch(`https://www.google.com/search?q=${this.searchKey}&as_sitesearch=${site}`, {
+        mode: 'no-cors'
+      })
+    const raw = await res.text()
+    console.log(raw)
+    const root: any = htmlParser.parse(raw)
+    const numberArea = root.querySelector('#result-stats')
+    return new SiteResult(site, 0)
+  }
+
+  async simCount (site: string): Promise<SiteResult> {
+    return new Promise<SiteResult>(resolve =>
+      setTimeout(() => resolve(new SiteResult(site, Math.trunc(Math.random() * 1000))), 2000))
   }
 }
