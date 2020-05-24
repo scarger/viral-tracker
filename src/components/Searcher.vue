@@ -41,14 +41,11 @@ export default defineComponent({
       }
     }
 
-    // TODO while loading, mark button as loading vuetify, fix router back button when it hits oldest
-
     return { search, doSearch, form }
   }
 })
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
